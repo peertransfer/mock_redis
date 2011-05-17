@@ -15,6 +15,14 @@ class MockRedis
       else fail "Not a hash"
       end
     end
+    
+    def hdel(key, hkey)
+      case h = self.hash[key]
+      when nil ; nil
+      when Hash ; h.delete(hkey)
+      else fail "Not a hash"
+      end
+    end
 
     def hincrby(key, hkey, val)
       case h = self.hash[key]
